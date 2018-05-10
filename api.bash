@@ -40,7 +40,6 @@ chat_message() {
         --data-urlencode "teamsay=$2" \
         "$webadmin_url$chat_route")"
     [[ "$code" == "200" ]] && return 0
-    echo "$code"
     return 1
 }
 
