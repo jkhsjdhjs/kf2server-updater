@@ -1,0 +1,7 @@
+[Unit]
+Description=Update the Killing Floor 2 Server
+
+[Service]
+Type=simple
+WorkingDirectory=%h/kf2server-updater
+ExecStart=%h/kf2server-updater/update.bash

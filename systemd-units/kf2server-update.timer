@@ -1,0 +1,9 @@
+[Unit]
+Description=Update the Killing Floor 2 Server
+
+[Timer]
+OnCalendar=*:0/15
+Persistent=true
+
+[Install]
+WantedBy=timers.target
