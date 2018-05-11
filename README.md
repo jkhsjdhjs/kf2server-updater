@@ -18,5 +18,5 @@ The server is automatically started afterwards if it was running before updating
 2. Set the path to your server executable in `systemd-units/kf2server.service`
 3. If you didn't clone this repository to `~/kf2server-updater` adjust the path in both variables of `systemd-units/kf2server-update.service`
 4. Enter the url, username and password of your webinterface in `config.bash`
-5. Make sure your KF2 server is up to date!
+5. Make sure your KF2 server is up to date and not running!
 6. Run `install.bash`
