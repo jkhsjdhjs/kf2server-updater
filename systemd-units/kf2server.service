@@ -3,7 +3,6 @@ Description=Killing Floor 2 Dedicated Server
 
 [Service]
 StandardOutput=null
-StandardError=null
 ExecStart=%h/Steam/steamapps/common/killingfloor2/Binaries/Win64/KFGameSteamServer.bin.x86_64
 
 [Install]
