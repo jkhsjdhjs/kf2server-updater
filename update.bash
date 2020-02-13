@@ -7,10 +7,11 @@ update_msg() {
     echo "This server will go down for updating in $1!"
 }
 
-response="$(up_to_date_check "$(cat "$current_version_file")")"
+current_build="$(< "$current_version_file")"
+latest_build="$(get_latest_build)"
 
-[[ "$(echo "$response" | jq .success)" != "true" ]] && exit 1
-[[ "$(echo "$response" | jq .up_to_date)" == "true" ]] && exit 0
+# check if server is up to date
+! (( latest_build > current_build )) && exit 0
 
 if systemctl --user -q is-active "$service"; then
     global_chat_message "$(update_msg "5 minutes")"
@@ -33,4 +34,4 @@ else
     update_server false
 fi
 
-echo "$response" | jq .required_version > "$current_version_file"
+get_latest_build > "$current_version_file"

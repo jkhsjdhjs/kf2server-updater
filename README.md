@@ -1,9 +1,5 @@
 # kf2server-updater
 
-## Note
-Currently this tool isn't working correctly because the steam api I'm using to check for updates always returns the same version.
-I'll have to find another way to check for updates.
-
 ## Description
 This tool automatically checks for updates for your Killing Floor 2 server every 15 Minutes.
 If updates are available it notifies the players on your server, stops the server 5 minutes later and installs the updates.
@@ -11,7 +7,6 @@ The server is automatically started afterwards if it was running before updating
 
 ## Dependencies
 - [pup](https://github.com/ericchiang/pup)
-- [jq](https://github.com/stedolan/jq)
 
 ## Installation
 1. Clone this repo: `git clone https://github.com/jkhsjdhjs/kf2server-updater.git`

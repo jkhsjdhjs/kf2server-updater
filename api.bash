@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
 source config.bash
+source vdf.bash
 
 login_route="/ServerAdmin/"
 chat_route="/ServerAdmin/current/chat"
 
-up_to_date_check() {
-    curl -GLs "https://api.steampowered.com/ISteamApps/UpToDateCheck/v1/" \
-        --data-urlencode "appid=$app_id" \
-        --data-urlencode "version=$1" \
-        | jq .response
+get_latest_build() {
+    local vdf keys
+    vdf="$("$steamcmd" +login anonymous +app_info_update 1 +app_info_print 232130 +quit | sed "1,/^AppID : $app_id/d")"
+    keys=("$app_id" depots branches public buildid)
+    vdf_get_value "$vdf" "${keys[@]}"
 }
 
 # returns 0 on success, 1 on error
@@ -51,6 +52,6 @@ global_chat_message() {
 # server is currently running <=> $1 = true
 update_server() {
     $1 && systemctl --user stop "$service"
-    eval "$steamcmd +login anonymous +app_update $app_id +exit"
+    "$steamcmd" +login anonymous +app_update $app_id +exit
     $1 && systemctl --user start "$service"
 }

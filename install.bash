@@ -11,7 +11,6 @@ check_dependency() {
 }
 
 check_dependency pup
-check_dependency jq
 
 if [[ -z ${XDG_RUNTIME_DIR+x} ]]; then
     XDG_RUNTIME_DIR="/run/user/$(id -u)"
@@ -24,4 +23,4 @@ mkdir -p "$systemd_user_units_path"
 cp systemd-units/{kf2server.service,kf2server-update.{timer,service}} "$systemd_user_units_path"
 systemctl --user daemon-reload
 systemctl --user enable --now kf2server.service kf2server-update.timer
-up_to_date_check 0 | jq .required_version > "$current_version_file"
+get_latest_build > "$current_version_file"
