@@ -8,7 +8,7 @@ chat_route="/ServerAdmin/current/chat"
 
 get_latest_build() {
     local vdf keys
-    vdf="$("$steamcmd" +login anonymous +app_info_update 1 +app_info_print 232130 +quit | sed "1,/^AppID : $app_id/d")"
+    vdf="$("$steamcmd" +login anonymous +app_info_update 1 +app_info_print "$app_id" +quit | sed "1,/^AppID : $app_id/d")"
     keys=("$app_id" depots branches public buildid)
     vdf_get_value "$vdf" "${keys[@]}"
 }
