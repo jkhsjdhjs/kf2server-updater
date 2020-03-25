@@ -13,7 +13,10 @@ latest_build="$(get_latest_build)"
 # check if server is up to date
 ! (( latest_build > current_build )) && exit 0
 
+echo "Server is out of date! Updating..."
+
 if systemctl --user -q is-active "$service"; then
+    echo "Stopping server in 5 minutes..."
     global_chat_message "$(update_msg "5 minutes")"
     sleep 4m
     global_chat_message "$(update_msg "1 minute")"
@@ -34,4 +37,4 @@ else
     update_server false
 fi
 
-get_latest_build > "$current_version_file"
+echo -n "$latest_build" > "$current_version_file"
