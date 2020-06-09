@@ -8,7 +8,11 @@ chat_route="/ServerAdmin/current/chat"
 
 get_latest_build() {
     local vdf keys
-    vdf="$("$steamcmd" +login anonymous +app_info_update +app_info_print "$app_id" +quit | sed "1,/^AppID : $app_id/d")"
+    # remove steam's appcache before checking for updates
+    # otherwise steam will not update the app info, even if you tell it to
+    # see https://steamcommunity.com/app/346110/discussions/0/535152511358957700/
+    rm -f "$(dirname "$steamcmd")/appcache/appinfo.vdf"
+    vdf="$("$steamcmd" +login anonymous +app_info_update 1 +app_info_print "$app_id" +quit | sed "1,/^AppID : $app_id/d")"
     keys=("$app_id" depots branches public buildid)
     vdf_get_value "$vdf" "${keys[@]}"
 }
