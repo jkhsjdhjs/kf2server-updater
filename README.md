@@ -1,4 +1,4 @@
-# kf2server-updater [![Build Status](https://travis-ci.org/jkhsjdhjs/kf2server-updater.svg?branch=master)](https://travis-ci.org/jkhsjdhjs/kf2server-updater)
+# kf2server-updater [![Build Status](https://travis-ci.com/jkhsjdhjs/kf2server-updater.svg?branch=master)](https://travis-ci.com/jkhsjdhjs/kf2server-updater)
 
 ## Description
 This tool automatically checks for updates for your Killing Floor 2 server every 15 Minutes.
